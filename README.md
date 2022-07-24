@@ -1,5 +1,22 @@
 
-Someone already done it https://myar.tistory.com/26 ; perfect strategy exists, no point in coding tool to find it...
+**Note**
+> Someone already done it better: https://myar.tistory.com/26. 
+> 
+> Seems like perfect strategy exists, no point in coding tool to find it...
+
+---
+
+# Lost Ark Engravings Simulator
+
+Lost Ark game has engravings systems which can enhance your gear and stats. My goal is to create tool to aid players while creating those items, as there is special mini-game/mechanics introduced to make this progress more interesting.
+
+![screenshot](docs/1.png)
+
+### Features
+
++ Simulator, working mini-game.
++ Keyboard support (`1`, `2`, `3` + `R`).
++ Strategies, via editable code snippets.
 
 ### TODO
 
