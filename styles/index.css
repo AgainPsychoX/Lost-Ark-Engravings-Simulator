@@ -1,0 +1,205 @@
+
+  /******************/
+ /* Specific stuff */
+/******************/
+
+#darkModeControl {
+	cursor: pointer;
+	user-select: none;
+}
+
+footer address {
+	margin: auto;
+	padding: 8px;
+	font-weight: 400;
+	font-style: italic;
+	letter-spacing: 0.5px;
+	text-align: center;
+	white-space: nowrap;
+}
+
+.conditional-1200 {
+	display: none;
+}
+@media (min-width: 1200px) {
+	.conditional-1200 {
+		display: block;
+	}
+}
+
+.background-note {
+	font-weight: 300;
+	font-size: small;
+	opacity: 0.5;
+}
+
+
+
+.controls {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin: 8px 16px;
+}
+.controls > * {
+	margin: 0 8px 0 0;
+	padding: 4px 8px;
+}
+.controls > *:last-child {
+	margin: 0;
+}
+.controls-split {
+	/* display: grid; 
+	grid-template-columns: auto auto; */
+	display: flex;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+.controls-split > * {
+	justify-content: center;
+	margin-top: 0;
+	margin-bottom: 0;
+	flex-grow: 1;
+}
+.controls-split > :last-child {
+	justify-content: flex-end;
+}
+.controls-split > :first-child {
+	justify-content: flex-start;
+}
+
+
+
+#simulator .status {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+#simulator .status > * {
+	margin: 8px;
+	padding: 4px;
+}
+
+#simulator .rows {
+	display: flex;
+	flex-direction: column;
+	padding: 8px;
+	margin: 16px;
+	box-shadow: 
+		0 0 8px 2px gray
+	;
+}
+#simulator .row {
+	margin: 8px;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	align-items: center;
+}
+#simulator .row button {
+	padding: 8px;
+	margin-left: 16px;
+}
+#simulator .cells {
+	display: flex;
+	justify-content: center;
+}
+#simulator .cell {
+	display: block;
+	padding: 8px;
+	margin: 0 auto;
+	min-width: 40px;
+	min-height: 40px;
+	background-color: whitesmoke;
+	border-radius: 8px;
+}
+@media (max-width: 600px) {
+	#simulator .cell {
+		min-width: 24px;
+		min-height: 24px;
+	}
+}
+
+#simulator .cell.success {
+	box-shadow: 
+		0 0 8px 8px dodgerblue inset, 
+		0 0 8px 2px dodgerblue inset, 
+		0 0 8px 2px dodgerblue
+	;
+}
+#simulator .cell.failed {
+	box-shadow: 
+		0 0 8px 8px gray inset, 
+		0 0 8px 2px gray inset, 
+		0 0 8px 2px gray
+	;
+}
+/* #simulator .cell input {
+	transform: scale(2);
+} */
+
+#simulator .row .cell {
+	background-color: rgba(30, 144, 255, 0.2);
+}
+#simulator .negative.row .cell {
+	background-color: rgb(216, 112, 147, 0.2);
+}
+
+#simulator .negative.row .cell.success {
+	box-shadow: 
+		0 0 8px 8px rgb(229, 25, 25) inset, 
+		0 0 8px 2px rgb(229, 25, 25) inset, 
+		0 0 8px 2px rgb(229, 25, 25)
+	;
+}
+
+
+
+#strategies ul.strategies {
+	margin: 16px 0;
+	padding: 0;
+	list-style-type: none;
+}
+#strategies ul.strategies section {
+	margin-bottom: 16px;
+}
+#strategies ul.strategies summary {
+	margin-bottom: 8px;
+	cursor: default;
+	user-select: none;
+}
+
+
+
+
+
+  /***************/
+ /* ACE editors */
+/***************/
+
+.editor-container {
+	margin: 16px;
+}
+.editor {
+	position: relative;
+	width: 100%;
+	min-height: 100px;
+	height: 200px;
+	box-shadow: 
+		0 0 8px 2px gray
+	;
+}
+.editor-container > .dragbar {
+	width: 100%;
+	height: 4px;
+	cursor: row-resize;
+}
+
+body.dark .editor {
+	box-shadow: 
+		0 0 8px 2px black
+	;
+}
+
+
+
+

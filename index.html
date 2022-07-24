@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Lost Ark Engravings Simulator</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles/common.css">
+	<link rel="stylesheet" href="styles/index.css">
+	<meta name="description" content="Lost Ark Engravings Simulator">
+	<meta name="keywords" content="lost ark,engravings,lostark,lost,ark,mmo,rpg,simulator,random">
+</head>
+<body>
+	<header>
+		<div class="nice-container">
+			<h1>Lost Ark Engravings Simulator</h1>
+		</div>
+	</header>
+	<nav>
+		<div class="nice-container">
+			<ul>
+			</ul>
+		</div>
+	</nav>
+	<main>
+		<article class="nice-container">
+			<header style="display: none;">
+				<h2>Lost Ark Engravings Simulator</h2>
+			</header>
+			<section id="howto">
+				<h2>How to use</h2>
+				<ul>
+					<li>Goal is to try get best engravings by choosing roll order between 2 positive and 1 negative types.</li>
+					<li>Each succeeded roll boosts chance by +10%, up to maximum of 75%.</li>
+					<li>Each failed roll boosts chance by -10%, down to minimum of 25%.</li>
+				</ul>
+				<p>
+					Good luck!
+				</p>
+			</section>
+			<section id="simulator">
+				<h2>Simulator</h2>
+				<div class="controls-split">
+					<div class="controls">
+						<label>
+							<span>Chance:</span>
+							<output name="chance"></output>
+						</label>
+					</div>
+					<div class="controls">
+						<button name="reset">Reset</button>
+					</div>
+				</div>
+				<div class="rows">
+				</div>
+				<template class="row">
+					<div class="row">
+						<div class="cells"></div>
+						<button name="roll">🗲</button>
+					</div>
+				</template>
+				<template class="cell">
+					<label class="cell">
+						<!-- <input type="checkbox"> -->
+					</label>
+				</template>
+				<br/>
+				<div class="background-note">Strategies running</div>
+				<div class="controls-split">
+					<div class="controls">
+						<label>
+							<span>Delay (ms):</span>
+							<input 
+								name="delay" type="number" 
+								step="50" min="0" max="9950" value="0"
+								style="width: 54px;" 
+							/>
+						</label>
+					</div>
+					<div class="controls">
+						<button name="useLastStrategy">Use last strategy <span class="name"></span></button>
+					</div>
+				</div>
+				<div class="controls-split">
+					<div class="controls">
+						<label>
+							<input name="stepByStep" type="checkbox">
+							<span>Step by step mode</span>
+						</label>
+					</div>
+					<div class="controls">
+						<button name="step" style="display: none;">Step</button>
+					</div>
+				</div>
+			</section>
+			<section id="strategies">
+				<h2>Strategies</h2>
+				<p>
+					Here you can write code that represents the strategy to solve the problem. It allows for benchmarking and comparing different strategies, allowing to find better approaches.
+				</p>
+				<p>
+					Notes:
+				</p>
+				<ul>
+					<li>Language used in the code is JavaScript, fairly simple even for newbies.</li>
+					<li>
+						The required code is body of function, that takes arguments:
+						<ul>
+							<li>
+								<code>rows</code> - Array of sub-arrays representing row state. Sub-arrays have the length of 10. Their values consist of: <code>true</code> for successes, <code>false</code> for failures and <code>null</code> for remaining cells.
+							</li>
+							<li>
+								<code>remaining</code> - Array of numbers describing how many cells remain to be selected in each row.
+							</li>
+							<li>
+								<code>chance</code> - Number, fraction from 0.25 to 0.75 representing current chance.
+							</li>
+						</ul>
+					</li>
+					<li>In JavaScript arrays starts from 0: primary row index is 0, then secondary is 1 and last, the bad one, is 2.</li>
+					<li>
+						Other useful functions
+						<ul>
+							<li>
+								Math functions like <code>Math.min</code>, <code>Math.max</code>, <code>Math.sqrt</code> and many others. Check <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">JavaScript docs</a> for more.
+							</li>
+							<li>
+								Console logging using <code>console.log</code>. You can open browser <em>DevTools</em> (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>J</kbd>) to see the logs and errors.
+							</li>
+							<li>
+								<code>remainingInOrder</code> - Selects from remaining rows in specified order. Pass <code>remaining</code> array and order array, example: <code>remainingInOrder(remaining, [0, 1, 2])</code>.
+							</li>
+						</ul>
+					</li>
+					<li><b>The code runs without any safety checks.</b> Please care as some invalid code (like infinite loops) might cause hangs up. If you copy-paste any code, make sure it comes from trusted source.</li>
+					<li>
+						Editors can be configured somewhat: Use <kbd>Ctrl</kbd>+<kbd>,</kbd> in any editor context to show <a href="https://github.com/ajaxorg/ace" target="_blank">ACE editor</a> settings.
+					</li>
+				</ul>
+				<p class="background-note close-on-click" data-target="">
+					Click strategy name to expand.
+				</p>
+				<ul class="strategies">
+					<li class="self-remove-onload">
+						Loading...
+					</li>
+				</ul>
+				<template class="strategy">
+					<li class="strategy">
+						<section>
+							<details>
+								<summary>
+									<h3>Name</h3>
+								</summary>
+								<p>Description</p>
+								<div class="controls">
+									<button name="run">Run</button>
+									<button name="benchmark" disabled>Benchmark</button>
+								</div>
+							</details>
+						</section>
+					</li>
+				</template>
+				<template class="strategy-with-editor">
+					<li class="strategy">
+						<section>
+							<details>
+								<summary>
+									<h3>Name</h3>
+								</summary>
+								<p>Description</p>
+								<div class="editor-container">
+									<div class="editor"></div>
+									<div class="dragbar"></div>
+								</div>
+								<div class="controls">
+									<button name="run">Run</button>
+									<button name="benchmark" disabled>Benchmark</button>
+								</div>
+							</details>
+						</section>
+					</li>
+				</template>
+			</section>
+		</article>
+	</main>
+	<footer>
+		<div class="nice-container" style="display: flex;">
+			<address>
+				Created by <a href="mailto:psychxoivi+lostark@gmail.com">AgainPsychoX</a>
+			</address>
+			<div style="float: right; font-size: 3em; padding: 8px;" id="darkModeControl">💡</div>
+		</div>
+	</footer>
+	<script src="scripts/structurer.js"></script>
+	<script src="https://pagecdn.io/lib/ace/1.4.13/ace.js" crossorigin="anonymous" integrity="sha256-bS3VAQePcKYmsvI+8BdG2QJAVb9FbiZLgM5vK2/+TcM=" ></script>
+	<script src="https://pagecdn.io/lib/ace/1.4.13/ext-language_tools.js" crossorigin="anonymous" ></script>
+	<script src="scripts/simulator.js"></script>
+	<script src="scripts/strategies.js"></script>
+	<script src="scripts/index.js"></script>
+	<script src="scripts/example-strategies/naive-ranges.js" async></script>
+	<script src="scripts/example-strategies/stupid-random.js" async></script>
+</body>
+</html>
